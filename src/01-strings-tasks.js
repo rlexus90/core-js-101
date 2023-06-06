@@ -69,9 +69,9 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  //throw new Error('Not implemented');
-let str = value.slice(7,-1);
-return str;
+  // throw new Error('Not implemented');
+  const str = value.slice(7, -1);
+  return str;
 }
 
 
@@ -86,8 +86,8 @@ return str;
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-  //throw new Error('Not implemented');
-return value[0];
+  // throw new Error('Not implemented');
+  return value[0];
 }
 
 /**
@@ -102,8 +102,8 @@ return value[0];
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-  //throw new Error('Not implemented');
-return value.trim();
+  // throw new Error('Not implemented');
+  return value.trim();
 }
 
 /**
@@ -118,8 +118,8 @@ return value.trim();
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-  //throw new Error('Not implemented');
-return value.repeat(count);
+  // throw new Error('Not implemented');
+  return value.repeat(count);
 }
 
 /**
@@ -135,8 +135,8 @@ return value.repeat(count);
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  //throw new Error('Not implemented');
-return str.replace(value,'');
+  // throw new Error('Not implemented');
+  return str.replace(value, '');
 }
 
 /**
@@ -151,9 +151,10 @@ return str.replace(value,'');
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  //throw new Error('Not implemented');
-str = str.replace('<','');
-
+  // throw new Error('Not implemented');
+  let s = str.replace('<', '');
+  s = s.replace('>', '');
+  return s;
 }
 
 
