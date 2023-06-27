@@ -21,15 +21,20 @@
  *    p1.then(answer => console.log(answer)) // 'Hooray!!! She said "Yes"!'
  *
  *    const p2 = willYouMarryMe(false);
- *    p2.then(answer => console.log(answer)) // 'Oh no, she said "No".';
+ *    p2.then(answer => console.log(answer)) // c;
  *
  *    const p3 = willYouMarryMe();
  *    p3.then(answer => console.log(answer))
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
+function willYouMarryMe(isPositiveAnswer) {
+  // throw new Error('Not implemented');
+  return new Promise(((resolve, rejected) => {
+    if (isPositiveAnswer === true) resolve('Hooray!!! She said "Yes"!');
+    if (isPositiveAnswer === false) resolve('Oh no, she said "No".');
+    rejected(Error('Wrong parameter is passed! Ask her again.'));
+  }));
 }
 
 
@@ -48,8 +53,9 @@ function willYouMarryMe(/* isPositiveAnswer */) {
  *    })
  *
  */
-function processAllPromises(/* array */) {
-  throw new Error('Not implemented');
+function processAllPromises(array) {
+  // throw new Error('Not implemented');
+  return Promise.all(array);
 }
 
 /**
@@ -71,8 +77,9 @@ function processAllPromises(/* array */) {
  *    })
  *
  */
-function getFastestPromise(/* array */) {
-  throw new Error('Not implemented');
+function getFastestPromise(array) {
+  // throw new Error('Not implemented');
+  return Promise.race(array);
 }
 
 /**
@@ -86,14 +93,19 @@ function getFastestPromise(/* array */) {
  *
  * @example
  *    const promises = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)];
- *    const p = chainPromises(promises, (a, b) => a + b);
+ *    c
  *    p.then((res) => {
  *      console.log(res) // => 6
  *    });
  *
  */
-function chainPromises(/* array, action */) {
-  throw new Error('Not implemented');
+function chainPromises(array, action) {
+  // throw new Error('Not implemented');
+  const arr = [];
+  return Promise.resolve(array.forEach(async (e) => {
+    const val = await e;
+    arr.push(val);
+  })).then(() => arr.reduce(action));
 }
 
 module.exports = {
