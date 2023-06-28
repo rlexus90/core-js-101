@@ -23,8 +23,9 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.asin(x))
  *
  */
-function getComposition(/* f, g */) {
-  throw new Error('Not implemented');
+function getComposition(f, g) {
+  // throw new Error('Not implemented');
+  return (x) => f(g(x));
 }
 
 
@@ -44,8 +45,9 @@ function getComposition(/* f, g */) {
  *   power05(16) => 4
  *
  */
-function getPowerFunction(/* exponent */) {
-  throw new Error('Not implemented');
+function getPowerFunction(exponent) {
+  // throw new Error('Not implemented');
+  return (x) => x ** exponent;
 }
 
 
@@ -62,8 +64,10 @@ function getPowerFunction(/* exponent */) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  throw new Error('Not implemented');
+function getPolynom(...arg) {
+  // throw new Error('Not implemented');
+  if (arg.length === 0) return null;
+  return (x) => arg.reverse().reduce((acc, el, ind) => acc + (el * (x ** ind)));
 }
 
 
@@ -81,8 +85,14 @@ function getPolynom() {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  // throw new Error('Not implemented');
+  let cache;
+  return (x) => {
+    if (cache) return cache;
+    cache = func(x);
+    return cache;
+  };
 }
 
 
@@ -101,8 +111,19 @@ function memoize(/* func */) {
  * }, 2);
  * retryer() => 2
  */
-function retry(/* func, attempts */) {
-  throw new Error('Not implemented');
+function retry(func, attempts) {
+  // throw new Error('Not implemented');
+  return () => {
+    if (attempts >= 0) {
+      try {
+        const ans = func();
+        return ans;
+      } catch (e) {
+        return retry(func, attempts - 1)();
+      }
+    }
+    return undefined;
+  };
 }
 
 
@@ -129,8 +150,18 @@ function retry(/* func, attempts */) {
  * cos(3.141592653589793) ends
  *
  */
-function logger(/* func, logFunc */) {
-  throw new Error('Not implemented');
+function logger(func, logFunc) {
+  // throw new Error('Not implemented');
+  return (...arg) => {
+    const { name } = func;
+    const arg1 = arg.map((e) => JSON.stringify(e));
+    const textS = `${name}(${arg1}) starts`;
+    const textE = `${name}(${arg1}) ends`;
+    logFunc(textS);
+    const ans = func(...arg);
+    logFunc(textE);
+    return ans;
+  };
 }
 
 
